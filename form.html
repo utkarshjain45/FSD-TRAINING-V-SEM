@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            align-items: center;
+            margin-left: 40%;
+        }
+    </style>
+</head>
+<div class="form">
+    <form action="url">
+            <h1>My Feedback Form</h1>
+            <ul>
+                <li>
+                    <label for="name">Name: </label>
+                    <input type="text" id="name">
+                    <br><br>
+                </li>
+                <li>
+                    <label for="Email">Email: </label>
+                    <input type="text" id="Email"><br><br>
+                </li>
+                <li>
+                    <label for="Password">Password: </label>
+                    <input type="text" id="Password"><br><br>   
+                </li>
+                <li>Please check all the emotions that apply to you <br>
+                    <ul type="circle">
+                        <li>
+                            <label for="Angry">Angry</label>
+                            <input type="checkbox" id="Angry"></li>
+                        <li>
+                            <label for="Sad">Sad</label>
+                            <input type="checkbox" id="Sad"></li>
+                        <li>
+                            <label for="Happy">Happy</label>
+                            <input type="checkbox" id="Happy"></li>
+                        <li>
+                            <label for="Ambivalent">Ambivalent</label>
+                            <input type="checkbox" id="Ambivalent"></li>
+                    </ul>
+                </li>
+                <li>How satisfied were you with our service? <br>
+                    <ul type="circle">
+                        <li>
+                            <label for="Angry">Very satisfied</label>
+                            <input type="radio" id="Angry"></li>
+                        <li>
+                            <label for="Sad">Satisfied</label>
+                            <input type="radio" id="Sad"></li>
+                        <li>
+                            <label for="Happy">Didn't Care</label>
+                            <input type="radio" id="Happy"></li>
+                        <li>
+                            <label for="Ambivalent">Disatisfied</label>
+                            <input type="radio" id="Ambivalent"></li>
+                        <li>
+                            <label for="Ambivalent">Very Disatisfied</label>
+                            <input type="radio" id="Ambivalent"></li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="comment">Further comments: </label>
+                    <textarea name="comments" id="comment"></textarea>
+                </li>
+                <li>
+                    <label for="photo">Bio photo:</label>
+                    <input type="file" id="photo">
+                </li>
+                <li>
+                    <label for="Location">Location Visited:</label>
+                    <select id="location">
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bangalore">Bangalore</option>
+                    </select>
+                </li>
+                <li>
+                    <input type="button" value="Submit">
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
