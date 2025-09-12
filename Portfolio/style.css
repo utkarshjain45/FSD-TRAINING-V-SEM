@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);    
+  color: #333;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);    
+    color: white;
+    padding: 20px 0;
+}
+
+header h1 {
+  display: inline-block;
+  font-size: 2em;
+}
+
+header nav {
+  float: right;
+  margin-top: 5px;
+}
+
+header nav ul {
+  list-style: none;
+}
+
+header nav ul li {
+  display: inline;
+  margin-left: 20px;
+}
+
+a{
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #c350c1;
+}
+
+.section {
+  padding: 40px 0;
+  background-color: #FFDEE9;
+  background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+#about .about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; 
+}
+
+#about .about-text {
+  flex: 1;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+#about .about-image {
+  flex-shrink: 0; 
+  width: 200px;  
+}
+
+#about .about-image img {
+  width: 100%;
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+
+#about {
+  padding: 60px 0; 
+}
+
+
+.project-card {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.project-card h3 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.project-card p {
+  margin-bottom: 15px;
+}
+
+.project-card a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    float: none;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  header nav ul {
+    padding: 0;
+  }
+
+  header nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .container {
+    width: 90%;
+  }
+}
