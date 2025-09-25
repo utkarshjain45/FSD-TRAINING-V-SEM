@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Marks System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .student-list, .controls {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .student-list {
+      flex: 2;
+      margin-right: 20px;
+    }
+    .controls {
+      flex: 1;
+    }
+    h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    input {
+      width: 95%;
+      padding: 8px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .total {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="student-list">
+      <h2>Student Marks System</h2>
+      <p class="total">Total students: <span id="total">0</span></p>
+      <table id="studentTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <p>Use the controls on the right to interact with the student list.</p>
+    </div>
+
+    <div class="controls">
+      <button onclick="showHighest()">Show Highest</button>
+      <button onclick="showAverage()">Show Average</button>
+      <button onclick="sortByMarks()">Sort by Marks</button>
+      <button onclick="removeLast()">Remove Last</button>
+      <button onclick="resetSample()">Reset Sample</button>
+
+      <h3>Add a Student</h3>
+      <input type="text" id="nameInput" placeholder="Enter Name">
+      <input type="number" id="marksInput" placeholder="Enter Marks (0-100)">
+      <button onclick="addStudent()">Add Student</button>
+    </div>
+  </div>
+
+  <script>
+    let students = [
+      {name: "Amit", marks: 85},
+      {name: "Priya", marks: 92},
+      {name: "Rahul", marks: 76},
+      {name: "Sneha", marks: 88},
+      {name: "Karan", marks: 95}
+    ];
+
+    function renderTable() {
+        const tbody = document.querySelector("#studentTable tbody");
+        tbody.innerHTML = "";
+        students.forEach(stu => {
+        let row = `<tr><td>${stu.name}</td><td>${stu.marks}</td></tr>`;
+        tbody.innerHTML += row;
+    });
+        document.getElementById("total").textContent = students.length;
+    }
+
+
+    function showHighest() {
+        if (students.length === 0) return alert("No students!");
+        let highest = students.reduce((a, b) => a.marks > b.marks ? a : b);
+        alert(`Highest: ${highest.name} with ${highest.marks} marks`);
+    }
+    
+    function showAverage() {
+        if (students.length === 0) return alert("No students!");
+        let avg = students.reduce((sum, stu) => sum + stu.marks, 0) / students.length;
+        alert(`Average Marks: ${avg.toFixed(2)}`);
+    }
+    
+
+    function sortByMarks() {
+      students.sort((a,b) => b.marks - a.marks);
+      renderTable();
+    }
+
+    function removeLast() {
+      students.pop();
+      renderTable();
+    }
+
+    function resetSample() {
+      students = [
+        {name: "Amit", marks: 85},
+        {name: "Priya", marks: 92},
+        {name: "Rahul", marks: 76},
+        {name: "Sneha", marks: 88},
+        {name: "Karan", marks: 95}
+      ];
+      renderTable();
+    }
+
+    function addStudent() {
+      const name = document.getElementById("nameInput").value.trim();
+      const marks = parseInt(document.getElementById("marksInput").value);
+      if(name === "" || isNaN(marks)) {
+        alert("Please enter valid details.");
+        return;
+      }
+      students.push({name, marks});
+      document.getElementById("nameInput").value = "";
+      document.getElementById("marksInput").value = "";
+      renderTable();
+    }
+
+    renderTable();
+  </script>
+
+</body>
+</html>
