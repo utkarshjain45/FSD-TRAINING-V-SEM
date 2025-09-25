@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .input-box {
+            width: 48%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+        }
+        .buttons button:hover {
+            background-color: #f0f0f0;
+        }
+        .output-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .output-box {
+            height: 25px;
+            width: 40%;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .clear-btn {
+            display: none; 
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff5e5e;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="input-container">
+            <input type="text" id="input1" class="input-box" placeholder="Enter first number" onkeydown="calculate(event)">
+            <input type="text" id="input2" class="input-box" placeholder="Enter second number" onkeydown="calculate(event)">
+        </div>
+
+        <div class="buttons">
+            <button onclick="performOperation('+')">+</button>
+            <button onclick="performOperation('-')">-</button>
+            <button onclick="performOperation('*')">*</button>
+            <button onclick="performOperation('/')">/</button>
+        </div>
+        
+        <div class="output-container">
+            <div class="output-box" id="result"></div>
+            <button class="clear-btn" id="clearBtn" onclick="clearInputs()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        function performOperation(operator) {
+            let input1 = document.getElementById('input1').value;
+            let input2 = document.getElementById('input2').value;
+            let result = 0;
+
+            if(input1 && input2) {
+                input1 = parseFloat(input1);
+                input2 = parseFloat(input2);
+                
+                switch(operator) {
+                    case '+':
+                        result = input1 + input2;
+                        break;
+                    case '-':
+                        result = input1 - input2;
+                        break;
+                    case '*':
+                        result = input1 * input2;
+                        break;
+                    case '/':
+                        if(input2 !== 0) {
+                            result = input1 / input2;
+                        } else {
+                            result = 'Error: Division by 0';
+                        }
+                        break;
+                }
+                document.getElementById('result').innerText = result;
+                document.getElementById('clearBtn').style.display = 'inline-block';  // Show Clear button
+            }
+        }
+
+        function clearInputs() {
+            document.getElementById('input1').value = '';
+            document.getElementById('input2').value = '';
+            document.getElementById('result').innerText = '';
+            document.getElementById('clearBtn').style.display = 'none';  // Hide Clear button
+        }
+
+        function calculate(event) {
+            if (event.key === 'Enter') {
+                let operator = event.target === document.getElementById('input1') ? '+' : '-';
+                performOperation(operator);
+            }
+        }
+    </script>
+</body>
+</html>
