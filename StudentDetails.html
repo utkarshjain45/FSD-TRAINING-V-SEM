@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f4f6f8;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            background: #fff;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 32px 32px 32px 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-size: 15px;
+        }
+        input[type="text"], input[type="number"], input[type="date"], textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 15px;
+            background: #f9fafb;
+            margin-bottom: 4px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 40px;
+        }
+        .add-btn {
+            width: 100%;
+            background: rgb(74, 103, 114);
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+        .extra-buttons{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .func-btn {
+            width: 45%;
+            background: rgb(74, 103, 114);
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+        #student-list {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <form>
+            <div class="form-group">
+                <label for="expense-name">Student Name</label>
+                <input type="text" id="expense-name" name="expense-name" placeholder="Enter Student name">
+            </div>
+            <div class="form-group">
+                <label for="marks">Marks</label>
+                <input type="number" id="marks" name="marks" placeholder="Enter marks">
+            </div>
+            <button type="button" class="add-btn">Add Student</button>
+            <div class="extra-buttons">
+                <button type="button" class="func-btn">Show All</button>
+                <button type="button" class="func-btn">Marks >= 40</button>
+                <button type="button" class="func-btn">Calculate average</button>
+                <button type="button" class="func-btn">Topper</button>
+            </div>
+        </form>
+        <div id="student-list"></div>
+    </div>
+</body>
+<script>
+    const students = [];
+
+    function updateStudentList() {
+        const listDiv = document.getElementById('student-list');
+        if (students.length === 0) {
+            listDiv.innerHTML = '<p>No students added.</p>';
+            return;
+        }
+        const listItems = students.map(s => `<li>${s.name}: ${s.marks}</li>`).join('');
+        listDiv.innerHTML = `<ul>${listItems}</ul>`;
+    }
+
+    function addStudent() {
+        const name = document.getElementById('expense-name').value.trim();
+        const marks = Number(document.getElementById('marks').value);
+        if (name && !isNaN(marks)) {
+            students.push({ name, marks });
+            updateStudentList();
+        } else {
+            alert('Please enter valid name and marks.');
+        }
+    }
+
+    function showPassingStudents() {
+        const passing = students.filter(s => s.marks >= 40);
+        const listDiv = document.getElementById('student-list');
+        if (passing.length === 0) {
+            listDiv.innerHTML = '<p>No students passed.</p>';
+            return;
+        }
+        const listItems = passing.map(s => `<li>${s.name}: ${s.marks}</li>`).join('');
+        listDiv.innerHTML = `<ul>${listItems}</ul>`;
+    }
+
+    function calculateAverage() {
+        if (students.length === 0) {
+            alert('No students to calculate average.');
+            return;
+        }
+        const avg = students.reduce((acc, s) => acc + s.marks, 0) / students.length;
+        alert(`Average marks: ${avg.toFixed(2)}`);
+    }
+
+    function findTopper() {
+        if (students.length === 0) {
+            alert('No students to find topper.');
+            return;
+        }
+        let topper = students[0];
+        students.forEach(s => {
+            if (s.marks > topper.marks) topper = s;
+        });
+        alert(`Topper: ${topper.name} (${topper.marks})`);
+    }
+
+    window.onload = function() {
+        document.querySelector('.add-btn').onclick = addStudent;
+        document.querySelectorAll('.func-btn')[0].onclick = updateStudentList;
+        document.querySelectorAll('.func-btn')[1].onclick = showPassingStudents;
+        document.querySelectorAll('.func-btn')[2].onclick = calculateAverage;
+        document.querySelectorAll('.func-btn')[3].onclick = findTopper;
+    };
+</script>
+</html>
