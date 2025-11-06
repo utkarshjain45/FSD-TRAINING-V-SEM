@@ -1,4 +1,3 @@
-import React from "react";
 import viteLogo from '../assets/react.svg'
 import market from '../assets/market.png'
 import menu from '../assets/menu.png'

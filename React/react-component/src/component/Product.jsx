@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Products = (props) => {
+  const Products = (props) => {
     const {image, name, price, rating} = props.productDetails;
   return (
         <div className="product-card">
