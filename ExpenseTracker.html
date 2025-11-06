@@ -155,9 +155,7 @@
             alert("Please insert valid expense details");
             return;
         }
-
         expenses.push({ name, amount, description, date });
-
         document.getElementById("expense-name").value = "";
         document.getElementById("amount").value = "";
         document.getElementById("description").value = "";
@@ -170,7 +168,6 @@
         expenses.splice(index, 1);
         renderTable();
     }
-
     function renderTable() {
         const tbody = document.querySelector("table tbody");
         const searchName = document.getElementById("searchName").value.trim().toLowerCase();
